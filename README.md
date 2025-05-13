@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Chat Assistant Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend of a **chat assistant application** that connects to a Flask-based backend via **SocketIO** for real-time communication and provides session management features using **Redis**. The app allows users to interact with an assistant, view session history, and manage multiple chat sessions.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Real-Time Chat**: Communicate with the assistant in real-time using **SocketIO**.
+- **Session Management**:
+  - Create new chat sessions.
+  - View the session history for any active session.
+  - Delete sessions and clear associated history.
+- **Responsive UI**: Designed with a sidebar for session management and a main area for chat interaction.
+- **Message Handling**: Allows users to send messages and receive assistant responses.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Frontend framework used to build the user interface.
+- **SocketIO**: Used for real-time bidirectional event-based communication with the backend.
+- **Axios**: Used to make HTTP requests to the backend for session management (fetching history and clearing sessions).
+- **Tailwind CSS**: Used for styling the UI components (sidebar, chat area, and buttons).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
 
-### `npm test`
+### Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14+)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd ./ai-rag-chatbot
+   npm install
+   npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Note - Ensure the backend (Flask app with Redis) is running on http://localhost:5000 to interact with the chat assistant.
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Application Usage
+### Creating a Session
+On the left sidebar, click the Add New Session button to create a new chat session.
 
-### `npm run eject`
+Each session will have a unique ID and can be selected to view or interact with its history.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Interacting with the Assistant
+Type your message in the input box at the bottom and click Send or press Enter.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The assistant's response will appear above the input box.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Managing Sessions
+View History: When a session is selected, the chat history (messages sent and received) will be fetched and displayed.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Delete Session: Click the Delete button next to a session to remove it from the list. This will also clear the session’s history on the backend.
 
-## Learn More
+### Real-Time Updates
+The app uses SocketIO to listen for real-time responses from the assistant. When a message is sent, it will appear in the chat in real-time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Code Structure
+App.js: Main React component that handles the UI and interactions.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+App.css: Custom styling for the chat interface and session management sidebar.
 
-### Code Splitting
+SocketIO Integration: The app connects to the backend via socket.io-client to receive real-time updates.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Session Management: The app interacts with the backend through axios to fetch session history and delete sessions.
 
-### Analyzing the Bundle Size
+## Notes
+Session Management: The app maintains a list of session IDs (session_12345 in the example) and allows users to switch between different sessions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Message Handling: Messages from the user and assistant are handled with the message state and displayed in a scrollable chat area.
 
-### Making a Progressive Web App
+## Future Improvements
+Enhance UI/UX with animations or transitions between sessions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Implement user authentication for better session management.
 
-### Advanced Configuration
+Add error handling and loading states for network requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Explanation of Sections:
+- **Features**: Describes the core functionalities of the app, such as real-time chat, session management, and message handling.
+- **Technologies Used**: Lists the libraries and frameworks used in the project, such as React, SocketIO, and Axios.
+- **Setup**: Provides steps to install dependencies and run the project locally.
+- **Application Usage**: Explains how users can interact with the frontend, create sessions, send messages, and manage chat sessions.
+- **Code Structure**: Briefly describes the structure and main components of the code.
+- **Notes**: Provides additional information on session management and message handling.
+- **Future Improvements**: Mentions potential features to enhance the application.
+- **License**: Adds the project's license information (MIT in this case).
